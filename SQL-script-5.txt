@@ -1,0 +1,25 @@
+SELECT ENAME, CONCAT(FORMAT(SAL,0), " €") "ΜΙΣΘΟΣ", COMM "ΠΡΟΜΗΘΕΙΑ", CONCAT( FORMAT( IFNULL(COMM,0)*100/SAL, 2 ), " %") "ΠΟΣΟΣΤΟ" FROM EMP;
+
+# ENAME	ΜΙΣΘΟΣ	ΠΡΟΜΗΘΕΙΑ ΠΟΣΟΣΤΟ
+CODD	3,000 €		  0.00 %
+ELMASRI	1,200 €	150.00	  12.50 %
+NAVATHE	2,000 €		  0.00 %
+DATE	1,800 €	200.00	  11.11 %
+
+
+SELECT ENAME "ΕΠΩΝΥΜΟ", CONCAT(FORMAT(SAL + IFNULL(COMM,0) ,0), " €") "ΜΗΝΙΑΙΕΣ ΑΠΟΔΟΧΕΣ", CONCAT( FORMAT( DATEDIFF(current_date(), HIREDATE) /365, 0 ), " έτη") "ΠΡΟΥΠΗΡΕΣΙΑ" FROM EMP 
+WHERE (DATEDIFF(current_date(), HIREDATE) /365) > 20 ;
+
+# ΕΠΩΝΥΜΟ  ΜΗΝΙΑΙΕΣ ΑΠΟΔΟΧΕΣ  ΠΡΟΥΠΗΡΕΣΙΑ
+CODD	   3,000 €            31 έτη
+ELMASRI	   1,350 €	      25 έτη
+NAVATHE	   2,000 €	      43 έτη
+
+
+SELECT ENAME "ΕΠΩΝΥΜΟ", JOB "ΘΕΣΗ", HIREDATE "ΠΡΟΣΛΗΨΗ" FROM EMP 
+WHERE ( JOB IN ('ANALYST', 'SALESMAN') ) AND ( SUBSTRING(HIREDATE, 9, 2) 
+BETWEEN 1 AND 5 );
+
+# ΕΠΩΝΥΜΟ ΘΕΣΗ	   ΠΡΟΣΛΗΨΗ
+CODD	  ANALYST  1989-01-01
+ELMASRI	  ANALYST  1995-05-02

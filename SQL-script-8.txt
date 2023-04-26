@@ -1,0 +1,12 @@
+SELECT FORMAT(AVG(SAL), 2) "ΜΕΣΟΣ ΟΡΟΣ ΜΙΣΘΟΥ", DEPTNO "ΤΜΗΜΑ" FROM EMP
+GROUP BY DEPTNO HAVING COUNT(DEPTNO)>=1;
+
+# ΜΕΣΟΣ ΟΡΟΣ ΜΙΣΘΟΥ	ΤΜΗΜΑ
+2,000.00		10
+2,000.00		20
+
+SELECT DEPTNO "ΤΜΗΜΑ", FORMAT(AVG(DATEDIFF(current_date(),HIREDATE)/365), 1) "ΠΡΟΥΠΗΡΕΣΙΑ (έτη)" FROM EMP GROUP BY DEPTNO;
+
+# ΤΜΗΜΑ	ΠΡΟΥΠΗΡΕΣΙΑ (έτη)
+10	24.2
+20	42.9
